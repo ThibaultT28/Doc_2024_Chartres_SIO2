@@ -1,0 +1,30 @@
+upstream backend {
+        server 192.168.28.120; # Adresse et port du premier serveur Apache
+        server 192.168.28.121; # Adresse et port du deuxième serveur Apache
+        # Ajoutez d'autres serveurs backend si nécessaire
+}
+
+#server {
+
+#	listen 80;
+#	server_name www.chartres.sportludique.fr;
+#	return 301 https://$host$request_uri;
+#	location / {
+#		proxy_pass http://192.168.28.120;
+#		include proxy_params;
+#	}
+#}
+
+server {
+
+        listen 443 ssl;
+        server_name www.chartres.sportludique.fr;
+        ssl_certificate /etc/certificats/www-chartres.pem;
+        ssl_certificate_key /etc/certificats/www-chartres.pem;
+        access_log /var/log/nginx/www_access.log;
+        error_log /var/log/nginx/www_error.log;
+        location / {
+                proxy_pass http://backend;
+                include proxy_params;
+        }
+}

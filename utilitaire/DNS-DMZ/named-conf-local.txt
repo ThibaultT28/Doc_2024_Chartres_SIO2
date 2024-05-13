@@ -1,0 +1,34 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+//
+view "outside" {
+    match-clients { 
+        !172.28.64.0/19; 
+        !192.168.28.0/24; 
+        !127.0.0.0/8;
+	any;
+    };
+    zone "chartres.sportludique.fr." {
+        type master;
+        file "/etc/bind/db.www.chartres.sportludique.fr";
+    };
+};
+
+
+view "inside" {
+    match-clients { 
+        172.28.64.0/19; 
+        192.168.28.0/24;
+	127.0.0.0/8; 
+    };
+    zone "chartres.sportludique.fr." {
+        type master;
+        file "/etc/bind/db.www.chartres.sportludique.fr.internal";
+    };
+};

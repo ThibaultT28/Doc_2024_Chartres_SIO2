@@ -1,0 +1,26 @@
+server {
+
+	listen 80;
+	server_name blog.chartres.sportludique.fr;
+	access_log /var/log/nginx/blog_access.log;
+	error_log /var/log/nginx/blog_error.log;
+#	return 301 https://$host$request_uri;
+
+#	location / {
+#		proxy_pass http://192.168.28.120;
+#		include proxy_params;
+#	}
+}
+server {
+
+        listen 443 ssl;
+        server_name blog.chartres.sportludique.fr;
+        ssl_certificate /etc/certificats/blog_chartres.pem;
+        ssl_certificate_key /etc/certificats/blog_chartres.pem;
+        access_log /var/log/nginx/blog_access.log;
+        error_log /var/log/nginx/blog_error.log;
+        location / {
+                proxy_pass http://192.168.28.120;
+                include proxy_params;
+        }
+}

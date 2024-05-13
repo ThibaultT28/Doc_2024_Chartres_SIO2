@@ -1,0 +1,10 @@
+server {
+
+	listen 80;
+	server_name node.chartres.sportludique.fr;
+
+	location / {
+		proxy_pass http://192.168.28.125;
+		include proxy_params;
+	}
+}

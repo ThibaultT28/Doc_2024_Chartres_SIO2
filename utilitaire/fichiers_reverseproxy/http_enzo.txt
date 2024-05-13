@@ -1,0 +1,12 @@
+server {
+    listen 80;
+    server_name enzo.chartres.sportludique.fr;
+#    access_log /var/log/nginx/enzo_access.log;
+#    error_log /var/log/nginx/enzo_error.log;
+
+    location / {
+        proxy_pass http://192.168.28.122;
+        include proxy_params;
+    }
+}
+

@@ -1,0 +1,16 @@
+;
+; BIND data file for local loopback interface
+;
+@       IN      SOA     ns1.chartres.sportludique.fr. admin.chartres.sportludique.fr. (
+              2023101701      ; Serial
+              604800          ; Refresh
+              86400           ; Retry
+              2419200         ; Expire
+              604800 )        ; Negative Cache TTL
+;
+@       IN      NS      ns1.chartres.sportludique.fr.
+ns1     IN      A       183.44.28.1
+ns1	    IN	    A	221.87.128.2
+www	    IN	  CNAME ns1.chartres.sportludique.fr.
+
+blog    IN  CNAME   www.chartres.sportludique.fr
